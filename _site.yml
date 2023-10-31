@@ -9,6 +9,8 @@ navbar:
       href: resume2024.html
     - text: "Projects"
       href: projects.html
+    - text: "Dashboard"
+      href: dashboard.html
     - text: "Travels"
       href: travel.html
     - icon: fa-github fa-lg
