@@ -6,7 +6,7 @@ navbar:
     - text: "About me"
       href: about.html
     - text: "Resume"
-      href: resume2024.html
+      href: resume.html
     - text: "Projects"
       href: projects.html
     - text: "Dashboard"

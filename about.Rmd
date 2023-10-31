@@ -7,7 +7,7 @@ output:
 ---
 <br>
 
-<img src="linkedinprofile.jpg" style="width:30%">
+<img src="images/linkedinprofile.jpg" style="width:28%">
 
 <br>
 
@@ -16,8 +16,9 @@ output:
 <div class="well">
 I am currently a graduate student at Columbia Univeristy working towards a MPH in Epidemiology & Biostatistics. I did my Bachelor's of Science in Nutritional Science and Toxicology at UC Berkeley. 
 
-* Wendy's [Linkedin](https://www.linkedin.com/in/wendyzhou/)
-* Here is my [resume](resume.html)
+* [Linkedin](https://www.linkedin.com/in/wendyzhou/)
+* [Resume](resume.html)
+
 </div>
 
 <br>
