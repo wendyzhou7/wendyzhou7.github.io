@@ -1,7 +1,20 @@
 ---
-title: "Holy cow!"
+title: "Welcome!"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
+<br>
 
-### I have a webpage!
+<div class="well">
+Hello, I'm Wendy! I am currently a graduate student at Columbia University. I am based in San Francisco and New York City. Feel free to checkout this website to learn more about my professional background, personal interests, and related projects I've been working on.
 
-And I can put all kinds of stuff on it!
+Feel free to contact me at: wz2630@cumc.columbia.edu
+
+</div>
+
+Master's Degree Progress!
+<div class="progress progress-striped active">
+  <div class="progress-bar" style="width: 70%"></div>
+</div>

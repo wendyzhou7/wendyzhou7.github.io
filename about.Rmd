@@ -1,9 +1,35 @@
 ---
-title: "About"
+title: "About Me"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
+<br>
 
-### About this site
+<img src="linkedinprofile.jpg" style="width:30%">
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+<br>
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+### Academic and Professional Career
+
+<div class="well">
+I am currently a graduate student at Columbia Univeristy working towards a MPH in Epidemiology & Biostatistics. I did my Bachelor's of Science in Nutritional Science and Toxicology at UC Berkeley. 
+
+* Wendy's [Linkedin](https://www.linkedin.com/in/wendyzhou/)
+* Here is my [resume](resume.html)
+</div>
+
+<br>
+
+### Personal
+<div class="well">
+
+I was born and raised in San Francisco, California. Currently in NYC for grad school! 
+I love the ourdoors, traveling, and eating through cities...
+for all yummy food recommendations, check out my food accounts:
+
+* [instragram](https://www.instagram.com/speaklesseatmore/) @speaklessaetmore
+* [beli](https://app.beliapp.com/lists/speaklesseatmore) @speaklesseatmore
+
+</div>
