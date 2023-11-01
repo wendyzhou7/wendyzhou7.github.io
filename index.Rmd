@@ -20,4 +20,4 @@ Master's Degree Progress!
 </div>
 
 
-<img src="images/columbia.jpeg" style="width:100%">
+<img src="images/AlmaMater_3.jpg" style="width:100%">

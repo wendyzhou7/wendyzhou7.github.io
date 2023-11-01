@@ -20,7 +20,7 @@ Would love to stay here for longer next time! Boo to gloomy weather all the time
 
 ### Paris, France
 
-<img src="images/IMG_3246.jpg" style="width:30%"> <img src="images/IMG_3367.jpg" style="width:30%"> <img src="images/IMG_3305.jpg" style="width:30%"> <img src="images/IMG_3202.jpg" style="width:30%">
+<img src="images/IMG_3246.jpg" style="width:30%"> <img src="images/IMG_3367.jpg" style="width:30%"> <img src="images/IMG_3305.jpg" style="width:30%">
 
 
 
@@ -37,7 +37,7 @@ Amazing food for amazing prices! There is so much to do as tourists and I would 
 <img src="images/zurich1.jpg" style="width:35%"> <img src="images/zurich3.jpg" style="width:35%"> 
 
 
-<img src="images/zurich2.jpg" style="width:50%">
+<img src="images/zurich2.jpg" style="width:70%">
 
 <div class="well">
 aka my future retirement home...
