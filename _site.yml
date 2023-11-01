@@ -19,6 +19,8 @@ navbar:
       href: https://www.linkedin.com/in/wendyzhou/
     - icon: fa-brands fa-instagram
       href: https://www.instagram.com/speaklesseatmore/
+    - icon: fa-envelope fa-lg
+      href: mailto:<wz2630@cumc.columbia.edu>
 output:
   html_document:
     theme: darkly

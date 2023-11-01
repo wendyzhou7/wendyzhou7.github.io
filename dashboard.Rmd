@@ -1,22 +1,55 @@
-```{r setup, include=FALSE}
-library(flexdashboard)
+---
+title: "NYC Restaurant Inspection Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
 
+```{r setup, message=FALSE, warning=FALSE}
+library(flexdashboard)
 library(tidyverse)
 library(plotly)
+library(lubridate)
 library(p8105.datasets)
 
-data(nyc_airbnb)
+#styling stuff
+knitr::opts_chunk$set(
+	echo = TRUE,
+	warning = FALSE,
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
 
-nyc_airbnb = 
-  nyc_airbnb |> 
-  mutate(rating = review_scores_location / 2) |>
-  select(
-    neighbourhood_group, neighbourhood, rating, price, room_type, lat, long) |>
-  filter(
-    !is.na(rating), 
-    neighbourhood_group == "Manhattan",
-    room_type == "Entire home/apt",
-    price %in% 100:500)
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+
+#----------------------------------------------------------------------
+
+# dataset used
+data(rest_inspec)
+
+# filter out missing data
+# setting seed and taking sample for easier loading purposes
+set.seed(1234)
+
+nyc_rest_inspec = 
+  rest_inspec |>
+  drop_na() |>
+  filter(grade != "NA", boro != "Missing", grade != "Not Yet Graded") |>
+  mutate(year = year(inspection_date),
+         month = month(inspection_date),
+         day = day(inspection_date)) |> 
+  sample_n(size = 50000)
+
 ```
 
 Column {data-width=650}
@@ -24,43 +57,65 @@ Column {data-width=650}
 
 ### Chart A
 
-```{r}
-nyc_airbnb |> 
-  mutate(neighbourhood = fct_reorder(neighbourhood, price)) |> 
-  plot_ly(y = ~price, 
-          color = ~neighbourhood, 
-          type = "box", 
-          colors = "viridis")
+```{r include=FALSE}
+# filter dataset to use
+nyc_inspec_2017 =
+  nyc_rest_inspec |> 
+  mutate(cuisine_description = ifelse(cuisine_description == "CafÃ©/Coffee/Tea", "Cafe/Coffee/Tea", cuisine_description)) |> 
+  filter(year == "2017")
 ```
+
+```{r echo=FALSE, warning=FALSE}
+nyc_inspec_2017 |> 
+  mutate(cuisine_description = fct_reorder(cuisine_description, score)) |> 
+  plot_ly(y = ~score, color = ~cuisine_description, 
+          type = "box", colors = "viridis", alpha = 0.5) |> 
+  layout(title = "Inspection Score Distribution in 2017 by Cuisine")
+```
+
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
 ### Chart B
 
-```{r}
-nyc_airbnb |>
-  mutate(text_label = str_c("Price: $", price, "\nRating: ", rating)) |> 
-  #what to have on hover label; /n adds a line break
-  plot_ly(
-    x = ~lat, 
-    y = ~long, 
-    type = "scatter", 
-    mode = "markers",
-    color = ~price, 
-    text = ~text_label, #label that appears when hovering (need to add mutate function)
-    alpha = 0.5)
+```{r include=FALSE}
+# filter dataset to use
+line_graph = 
+  nyc_rest_inspec |>
+  group_by(boro, inspection_date) |>
+  summarise(avg_inspec_score = mean(score, na.rm = FALSE)) |>
+  pivot_wider(names_from = "boro", 
+              values_from = "avg_inspec_score") |> 
+  rename(STATEN_ISLAND = `STATEN ISLAND`)
 ```
+
+```{r echo=FALSE, warning=FALSE}
+line_graph |>
+  drop_na() |>
+  plot_ly(x = ~inspection_date, y = ~BRONX, name = 'Bronx', type = 'scatter', mode = 'lines', alpha = 0.5) |> 
+  add_trace(y = ~BROOKLYN, name = 'Brooklyn', mode = 'lines', alpha = 0.5) |>
+  add_trace(y = ~MANHATTAN, name = 'Manhattan', mode = 'lines', alpha = 0.5) |>
+  add_trace(y = ~QUEENS, name = 'Queens', mode = 'lines', alpha = 0.5) |>
+  add_trace(y = ~STATEN_ISLAND, name = 'Staten Island', mode = 'lines', alpha = 0.5) |>
+  layout(title = "Restaurant Average Inspection Score by NYC Borough")
+```
+
 
 ### Chart C
 
-```{r}
-nyc_airbnb |> 
-  count(neighbourhood) |> 
-  mutate(neighbourhood = fct_reorder(neighbourhood, n)) |> 
-  plot_ly(x = ~neighbourhood, 
-          y = ~n, 
-          color = ~neighbourhood, 
-          type = "bar", 
-          colors = "viridis") # color coding
+```{r echo=FALSE, warning=FALSE}
+
+nyc_rest_inspec |>  
+  group_by(year, grade) |> 
+  summarise(n = n()) |> 
+  filter(year %in% c("2014", "2015", "2016", "2017")) |> 
+  mutate(percent = round(n/sum(n)*100, 2)) |> 
+  plot_ly(x = ~year, y = ~percent, color = ~grade,
+          type = "bar", colors = "viridis") |> 
+  layout(yaxis = list(title = "Percentage (%)"),
+         xaxis = list(title = "Year")
+    ) |> 
+  layout(title = "NYC Restarurant Score Distributions 2014-2017")
 ```
+

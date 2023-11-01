@@ -7,7 +7,7 @@ output:
 ---
 <br>
 
-<img src="images/linkedinprofile.jpg" style="width:28%">
+<img src="images/linkedinprofile.jpg" style="width:30%">
 
 <br>
 
