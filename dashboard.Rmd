@@ -55,13 +55,15 @@ nyc_rest_inspec =
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Figure 1. Inspection Score Distribution in 2017 by Cuisine
 
 ```{r include=FALSE}
 # filter dataset to use
 nyc_inspec_2017 =
-  nyc_rest_inspec |> 
-  mutate(cuisine_description = ifelse(cuisine_description == "CafÃ©/Coffee/Tea", "Cafe/Coffee/Tea", cuisine_description)) |> 
+  nyc_rest_inspec |>  
+  mutate(cuisine_description = ifelse(cuisine_description == "CafÃ©/Coffee/Tea", "Cafe/Coffee/Tea", cuisine_description), 
+         cuisine_description = ifelse(cuisine_description == "Bottled beverages, including water, sodas, juices, etc.", "Bottled beverages", cuisine_description), 
+         cuisine_description = ifelse(cuisine_description == "Latin (Cuban, Dominican, Puerto Rican, South & Central American)", "Latin", cuisine_description)) |> 
   filter(year == "2017")
 ```
 
@@ -69,15 +71,16 @@ nyc_inspec_2017 =
 nyc_inspec_2017 |> 
   mutate(cuisine_description = fct_reorder(cuisine_description, score)) |> 
   plot_ly(y = ~score, color = ~cuisine_description, 
-          type = "box", colors = "viridis", alpha = 0.5) |> 
-  layout(title = "Inspection Score Distribution in 2017 by Cuisine")
+          type = "box", colors = "viridis", alpha = 0.5) |>
+  layout(yaxis = list(title = "Inspection Score"),
+         xaxis = list(title = "Cuisine Type"))
 ```
 
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Figure 2. Restaurant Average Inspection Score by NYC Borough
 
 ```{r include=FALSE}
 # filter dataset to use
@@ -98,11 +101,12 @@ line_graph |>
   add_trace(y = ~MANHATTAN, name = 'Manhattan', mode = 'lines', alpha = 0.5) |>
   add_trace(y = ~QUEENS, name = 'Queens', mode = 'lines', alpha = 0.5) |>
   add_trace(y = ~STATEN_ISLAND, name = 'Staten Island', mode = 'lines', alpha = 0.5) |>
-  layout(title = "Restaurant Average Inspection Score by NYC Borough")
+  layout(yaxis = list(title = "Average Inspection Score"),
+         xaxis = list(title = "Inspection Date"))
 ```
 
 
-### Chart C
+### Figure 3. NYC Restarurant Score Distributions 2014-2017
 
 ```{r echo=FALSE, warning=FALSE}
 
@@ -115,7 +119,6 @@ nyc_rest_inspec |>
           type = "bar", colors = "viridis") |> 
   layout(yaxis = list(title = "Percentage (%)"),
          xaxis = list(title = "Year")
-    ) |> 
-  layout(title = "NYC Restarurant Score Distributions 2014-2017")
+    )
 ```
 
