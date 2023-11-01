@@ -106,7 +106,7 @@ line_graph |>
 ```
 
 
-### Figure 3. NYC Restarurant Score Distributions (2014-2017)
+### Figure 3. NYC Restarurant Inspection Grade Distributions (2014-2017)
 
 ```{r echo=FALSE, warning=FALSE}
 
