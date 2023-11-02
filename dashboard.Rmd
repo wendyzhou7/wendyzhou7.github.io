@@ -55,7 +55,7 @@ nyc_rest_inspec =
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Figure 1. Inspection Score Distribution in 2017 by Cuisine
+### Figure 1. 2017 Inspection Score Distribution by Cuisine
 
 ```{r include=FALSE}
 # filter dataset to use
