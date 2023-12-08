@@ -16,7 +16,7 @@ Feel free to contact me at: wz2630@cumc.columbia.edu
 
 Master's Degree Progress!
 <div class="progress progress-striped active">
-  <div class="progress-bar" style="width: 70%"></div>
+  <div class="progress-bar" style="width: 80%"></div>
 </div>
 
 
